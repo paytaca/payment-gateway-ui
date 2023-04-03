@@ -1,0 +1,25 @@
+{
+    "data": [
+      {
+        "date": "Jan",
+        "color1": "#EC368D",
+        "color2": "#51E5FF",
+        "close": "0.4",
+        "high": "0.7"
+      },
+      {
+        "date": "Feb",
+        "color1": "#EC368D",
+        "color2": "#51E5FF",
+        "close": "0.2",
+        "high": "0.5"
+      },
+      {
+        "date": "Mar",
+        "color1": "#EC368D",
+        "color2": "#51E5FF",
+        "close": "0.6",
+        "high": "0.8"
+      }
+    ]
+  }

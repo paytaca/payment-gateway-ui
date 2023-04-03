@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .link-db.router-link-exact-active {
+        @apply bg-blue-400 text-white fill-white;
+    }
+}
