@@ -52,7 +52,7 @@
         },
         methods: {
             async submitloginForm() {
-                if (this.email === 'daniljeus.ampatin@evsu.edu.ph' && this.password === '123456') {
+                if (this.email === 'admin@gmail.com' && this.password === 'password') {
                     this.$router.push('/dashboard')
                 } else {
                     alert('Invalid credentials')
