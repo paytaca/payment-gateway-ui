@@ -6,7 +6,7 @@
          <appSidebar/>
         </div>
             
-                <div class="w-60 rounded-3xl overflow-hidden shadow-lg bg-[#ffffff] object-center mt-5 inline-block">
+                <div class="w-1/6 h-64 pb-6 rounded-3xl overflow-hidden shadow-lg bg-[#ffffff] object-center mt-5 inline-block mx-auto">
                     <div class="py-4 px-4 text-center"> 
                         <img class="w-24 mx-auto my-7" src="~/assets/images/uwucommerce.png "/>
                         <div class="font-bold text-lg mb-2">WooCommerce</div>
@@ -16,7 +16,7 @@
                     </div>
                 </div>
 
-                <div class="w-60 rounded-3xl overflow-hidden shadow-lg bg-[#ffffff] object-center mt-5 inline-block ml-5">
+                <div class="pb-6 w-1/6 h-64 rounded-3xl overflow-hidden shadow-lg bg-[#ffffff] object-center mt-5 inline-block ml-5 mx-auto">
                     <div class="py-4 px-4 text-center"> 
                         <img class="w-16 mx-auto my-5" src="~/assets/images/shopify.png "/>
                         <div class="font-bold text-lg mb-2">Shopify</div>

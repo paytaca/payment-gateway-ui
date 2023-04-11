@@ -6,6 +6,7 @@
                 <h2 class="text-center font-semibold text-2xl my-6">Welcome back!</h2>
 
                 <!-- <Notification :message="error" v-if="error"/> -->
+                <!-- Page visits: {{ count }} -->
 
                 <form method="post" @submit.prevent="login">
                     <div class="mt-3">
@@ -43,5 +44,14 @@
 </template>
   
 <script>
-
+    // export default defineComponent({
+    // async setup() {
+    //     const [{ data: count }] = await Promise.all([
+    //     useFetch(`192.168.1.16/test/api`)
+    //     ])
+    //     return {
+    //     count,
+    //     }
+    // }
+    // })
 </script>

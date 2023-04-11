@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="overflow-hidden">
-            <button class="text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-4 w-48 " type="button" v-on:click="toggleModal()">Connect</button>
+            <button class="text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-4 w-11/12 " type="button" v-on:click="toggleModal()">Connect</button>
                 <div v-if="showModal" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
                     <div class="relative my-6 w-full">
                                 <!--content-->
