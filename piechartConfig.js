@@ -1,9 +1,17 @@
+function getRandomInt() {
+  return Math.floor(Math.random() * (100 - 5 + 1)) + 5
+}
+
 export const data = {
     labels: ['Earned', 'Invested', 'Total Sales', 'Loss'],
     datasets: [
       {
         backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
-        data: [40, 20, 80, 10]
+        data: [getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          ]
       }
     ]
   }

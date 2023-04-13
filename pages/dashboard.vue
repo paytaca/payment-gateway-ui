@@ -9,9 +9,10 @@
       <div class="content">
         <!-- Page visits: {{ meow }} -->
         <div v-for="s in sales">
-          {{ s.user}} {{ s.order_id }} {{ s.status }} {{ s.total }}
+          {{ s.total_sale }}
         </div>
         
+        <trial/>
         <!--FIRST ROW CONTENT-->
         <div class="flex">
   
@@ -51,19 +52,8 @@
   </template>
 
 <script setup>
-  const { data: sales } = useFetch('http://192.168.1.16:7878/test/api')
+  const { data: sales } = await useFetch('http://192.168.1.16:7878/test/api/total')
 </script>  
-
-  <script>
-    // export default {
-    //     data() {
-    //         return {
-
-    //         }
-    //     },
-        
-    //   }
-  </script>
   
   <style>
     body{
@@ -75,5 +65,6 @@
       max-height: 90vh;
       overflow-y: scroll;
       scrollbar-width: thin;
+      
     }
   </style>

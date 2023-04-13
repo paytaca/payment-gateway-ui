@@ -1,3 +1,7 @@
+function getRandomInt() {
+  return Math.floor(Math.random() * (100 - 5 + 1)) + 5
+}
+
 export const data = {
     labels: [
       'January',
@@ -17,7 +21,18 @@ export const data = {
       {
         label: 'Monthly Sales',
         backgroundColor: '#05fa4e',
-        data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
+        data: [ getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),]
       }
     ]
   }
