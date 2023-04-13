@@ -7,6 +7,7 @@
   <script>
   import { Bar } from 'vue-chartjs'
   import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+  import axios from "axios";
   
   ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
   
@@ -21,10 +22,11 @@
     },
     async mounted () {
       this.loaded = false
-  
+
       try {
-        const response = await fetch('http://192.168.1.16:7878/test/api/total')
-        const { userlist } = await response.json()
+        const response = await axios.get('http://192.168.1.16:7878/test/api/total/', { mode: "no-cors"})
+        const month = response.data.map(item => item.total_sale)
+
         this.chartData = {
           labels: [
             'January',
@@ -44,7 +46,7 @@
             {
               label: 'Monthly Sales',
               backgroundColor: '#05fa4e',
-              data: userlist.map((value) => value.total),
+              data: month,
             },
           ],
         }
@@ -55,4 +57,3 @@
     }
   }
   </script>
-  
