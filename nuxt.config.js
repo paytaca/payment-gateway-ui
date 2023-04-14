@@ -41,6 +41,7 @@ export default {
     modules: [
       // other modules...
     ],
+  
     build: {
       // other build options...
     },

@@ -1,0 +1,6 @@
+{
+    "editor.minimap.autohide": true,
+    "editor.minimap.showSlider": "always",
+    "editor.minimap.scale": 2,
+    "editor.minimap.enabled": false
+}

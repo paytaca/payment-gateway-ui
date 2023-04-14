@@ -7,10 +7,6 @@
       </div>
       <!--Charts-->
       <div class="content">
-        <!-- Page visits: {{ meow }} -->
-        <div v-for="s in sales">
-          {{ s.user}} {{ s.order_id }} {{ s.status }} {{ s.total }}
-        </div>
         
         <!--FIRST ROW CONTENT-->
         <div class="flex">
@@ -50,19 +46,9 @@
       
   </template>
 
-<script setup>
-  const { data: sales } = useFetch('http://192.168.1.16:7878/test/api')
-</script>  
 
   <script>
-    // export default {
-    //     data() {
-    //         return {
 
-    //         }
-    //     },
-        
-    //   }
   </script>
   
   <style>

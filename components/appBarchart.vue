@@ -1,29 +1,57 @@
 <template>
-    <Bar :data="data" :options="options" />
+    <Bar v-if="loaded" :data="chartData" />
   </template>
   
-  <script lang="ts">
-  import {
-    Chart as ChartJS,
-    Title,
-    Tooltip,
-    Legend,
-    BarElement,
-    CategoryScale,
-    LinearScale
-  } from 'chart.js'
+  <script>
   import { Bar } from 'vue-chartjs'
-  import * as chartConfig from '~/barchartConfig.js'
+  import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+  import axios from "axios";
   
-  ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
+  ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
   
   export default {
-    name: 'appBarchart',
-    components: {
-      Bar
-    },
+    name: 'BarChart',
+    components: { Bar },
     data() {
-      return chartConfig
+      return {
+        loaded: false,
+        chartData: null
+      }
+    },
+    async mounted () {
+      this.loaded = false
+
+      try {
+        const response = await axios.get('http://192.168.1.16:7878/test/api/total/', { mode: "no-cors"})
+        const month = response.data.map(item => item.total_sale)
+
+        this.chartData = {
+          labels: [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December',
+          ],
+          datasets: [
+            {
+              label: 'Monthly Sales',
+              backgroundColor: '#05fa4e',
+              data: month,
+            },
+          ],
+        }
+        this.loaded = true
+      } catch (e) {
+        console.error(e)
+      }
     }
   }
   </script>
