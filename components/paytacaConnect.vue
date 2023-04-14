@@ -13,22 +13,21 @@
                                     </button>
                                 </div>
                             <div class="flex items-center">
-                                    <img class="w-30 mx-auto mt-3 mb-1" src="~/assets/images/woocommerce_tag.png "/>
+                                    <img class="w-16 mx-auto mt-3 mb-1" src="~/assets/images/paytaca-logo.png"/>
                                 </div>
                                 <!--body-->
+                                <div class="h-6"></div>
+                                <div class="font-bold text-lg mb-2">Link Paytaca</div>
                                 <div class="relative p-6 pt-0 flex-auto text-left">
-                                    <p class="my-4 font-medium text-slate-700  text-base leading-relaxed">
-                                       Store URL:
+                                    <p class="my-4 
+                                    font-medium text-slate-700 text-base leading-relaxed">
+                                       Enter your xPub Key:
                                     </p>
-                                    <input class="w-full bg-gray-100 rounded-lg p-2 ml-0" v-model="message" placeholder="URL...">
-                                    <p class="my-4 font-medium text-slate-700 text-base leading-relaxed">
-                                       Enter your Consumer Key:
+                                    <input class="w-full bg-gray-100 rounded-lg p-2 ml-0" v-model="message" placeholder="xPub Key...">
+                                    <p class="mt-8 my-4 font-medium text-slate-700 text-base leading-relaxed">
+                                       Enter your Wallet Hash:
                                     </p>
-                                    <input class="w-full bg-gray-100 rounded-lg p-2 ml-0" v-model="message" placeholder="Consumer Key...">
-                                    <p class="my-4 font-medium text-slate-700 text-base leading-relaxed">
-                                       Enter your Consumer Secret:
-                                    </p>
-                                    <input class="w-full bg-gray-100 rounded-lg p-2 ml-0" v-model="message" placeholder="Consumer Secret...">
+                                    <input class="w-full bg-gray-100 rounded-lg p-2 ml-0" v-model="message" placeholder="Wallet Hash...">
                                 </div>
                                 <!--footer-->
                                 <div class="flex items-center justify-end p-2 px-5 py-5">
@@ -46,7 +45,7 @@
 
 <script>
      export default {
-    name: "connectModal",
+    name: "paytacaConnect",
         data() {
             return {
             showModal: false
