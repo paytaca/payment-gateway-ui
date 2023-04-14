@@ -1,3 +1,7 @@
+function getRandomInt() {
+  return Math.floor(Math.random() * (100 - 5 + 1)) + 5
+}
+
 export const data = {
     labels: [
       'Sales',
@@ -16,7 +20,12 @@ export const data = {
         pointBorderColor: '#fff',
         pointHoverBackgroundColor: '#fff',
         pointHoverBorderColor: 'rgba(179,181,198,1)',
-        data: [65, 59, 90, 81, 56, 55, 40]
+        data: [getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),]
       },
       {
         label: 'Montly Revenue',
@@ -25,7 +34,13 @@ export const data = {
         pointBorderColor: '#fff',
         pointHoverBackgroundColor: '#fff',
         pointHoverBorderColor: 'rgba(255,99,132,1)',
-        data: [28, 48, 40, 19, 96, 27, 100]
+        data: [getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),]
       }
     ]
   }

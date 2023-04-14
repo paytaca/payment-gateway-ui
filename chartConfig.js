@@ -1,10 +1,25 @@
+function getRandomInt() {
+  return Math.floor(Math.random() * (100 - 5 + 1)) + 5
+}
+
 export const data = {
     labels: ['2012','2013', '2014', '2015', '2016', '2017', '2018', '2019' ,'2020', '2021', '2022', '2023'],
     datasets: [
       {
         label: 'Yearly Sales',
         backgroundColor: '#0036fa',
-        data: [40, 39, 10, 40, 39, 80, 40, 80, 23, 100, 64, 20]
+        data: [getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),
+          getRandomInt(),]
       }
     ]
   }

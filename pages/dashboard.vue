@@ -7,7 +7,6 @@
       </div>
       <!--Charts-->
       <div class="content">
-        
         <!--FIRST ROW CONTENT-->
         <div class="flex">
   
@@ -45,12 +44,6 @@
       
       
   </template>
-
-
-  <script>
-
-  </script>
-  
   <style>
     body{
       overflow: hidden;
@@ -61,5 +54,6 @@
       max-height: 90vh;
       overflow-y: scroll;
       scrollbar-width: thin;
+      
     }
   </style>
