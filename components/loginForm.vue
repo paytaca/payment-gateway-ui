@@ -7,7 +7,7 @@
 
                 <!-- <Notification :message="error" v-if="error"/> -->
 
-                <form @submit.prevent="submitloginForm">
+                <form v-on:submit.prevent="submitloginForm">
                     <div class="mt-3">
                         <label class="font-semibold text-slate-500 ">Email</label>
                         <input
@@ -42,24 +42,57 @@
     </div>
 </template>
 
-<script>
-    export default {
-        data() {
-            return {
-                email: '',
-                password: ''
-            }
-        },
-        methods: {
-            async submitloginForm() {
-                if (this.email === 'admin@gmail.com' && this.password === 'password') {
-                    this.$router.push('/dashboard')
-                } else {
-                    alert('Invalid credentials')
-                }
-            }
+<script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+let email = ref('')
+let password = ref('')
+let errors = ref([])
+const router = useRouter()
+
+async function submitloginForm() {
+  errors.value = []
+
+  if (errors.value.length === 0) {
+    await $fetch('http://192.168.1.8:7878/payment-gateway/user/login/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email.value,
+        password: password.value
+      })
+    })
+    .then(response => {
+        console.log(email.value)
+        console.log(password.value)
+        console.log(response)
+        console.log(response.status)
+        console.log(response.token)
+        if (response.token != null) {
+            router.push('/dashboard')
+            email.value = ''
+            password.value = ''
+        } else {
+            alert('Invalid Email or Password')
+            console.log(response)
         }
-    }
+    })
+      .catch(error => {
+        if (error.response) {
+          for (const property in error.response._data) {
+            errors.value.push(`${property}: ${error.response._data[property]}`)
+          }
+          console.log(JSON.stringify(error.response))
+        } else if (error.message) {
+          errors.value.push('Something went wrong')
+          console.log(JSON.stringify(error))
+        }
+      })
+  }
+}
 </script>
 
 <style>
