@@ -8,7 +8,7 @@
   
                 <!-- <Notification :message="error" v-if="error"/> -->
   
-                <form >
+                <form v-on:submit.prevent="submitForm">
                     <div class="field mt-3">
                         <label class="font-semibold text-slate-500">Name</label>
                         <div class="control">
@@ -16,7 +16,7 @@
                               type="text"
                               class="px-3 py-3 placeholder-slate-300 text-slate-600 relative bg-white rounded text-sm border border-slate-300 outline-none focus:outline-none focus:ring w-full mt-1"
                               name="name"
-                              v-model="name"
+                              v-model="full_name"
                               required 
                           />
                         </div>
@@ -56,10 +56,8 @@
                         </div>
                         
                         </div>
-                    <div class="control">
-                        <button class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-5 w-full shadow-[0_4px_9px_-4px_#3b71ca]" type="submit">Register
+                        <button class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-5 w-full shadow-[0_4px_9px_-4px_#3b71ca]">Register
                         </button>
-                    </div>
                 </form>
                 <div class="text-center" style="margin-top: 20px">
                     Already got an account? <nuxt-link to="/"><span class="text-blue-700 font-bold">Login</span></nuxt-link>
@@ -69,23 +67,50 @@
     </div>
   </template>
   
-  <script>
-   export default {
-    data() {
-      return {
-        showPassword: false,
-        password: null
-      };
-    },
-    computed: {
-      buttonLabel() {
-        return (this.showPassword) ? "Hide" : "Show";
-      }
-    },
-    methods: {
-      toggleShow() {
-        this.showPassword = !this.showPassword;
-      }
+  <script setup>
+  import { ref } from 'vue'
+  import { useRouter } from 'vue-router'
+  
+  let full_name = ref('')
+  let username = ref('')
+  let email = ref('')
+  let password = ref('')
+  let errors = ref([])
+  const router = useRouter()
+  
+  async function submitForm() {
+    errors.value = []
+  
+    if (errors.value.length === 0) {
+      await $fetch('http://192.168.1.8:7878/payment-gateway/user/signup/', {
+        method: 'POST',
+        body: {
+          full_name: full_name.value,
+          username: username.value,
+          email: email.value,
+          password: password.value
+        }
+      })
+        .then(response => {
+          alert('Account successfully registered!')
+          full_name.value = ''
+          username.value = ''
+          email.value = ''
+          password.value = ''
+          console.log(response)
+          router.push('/')
+        })
+        .catch(error => {
+          if (error.response) {
+            for (const property in error.response._data) {
+              errors.value.push(`${property}: ${error.response._data[property]}`)
+            }
+            console.log(JSON.stringify(error.response))
+          } else if (error.message) {
+            errors.value.push('Something went wrong')
+            console.log(JSON.stringify(error))
+          }
+        })
     }
-  };
+  }
   </script>
