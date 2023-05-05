@@ -96,6 +96,8 @@
 
             document.cookie = `full_name=${full_name.value}`
             document.cookie = `username=${username.value}`
+            document.cookie = `email=${email.value}`
+            document.cookie = `password=${password.value}`
 
             full_name.value = ''
             username.value = ''
