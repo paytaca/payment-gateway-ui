@@ -73,7 +73,6 @@ async function submitloginForm() {
         console.log(response.status)
         console.log(response.full_name)
         if (response.token != null) {
-            Cookies.set('token', response.token) // store token in a cookie
             router.push('/dashboard')
             email.value = ''
             password.value = ''
