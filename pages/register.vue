@@ -92,27 +92,19 @@
         }
       })
         .then(response => {
-          if (response.status!= 200) {
-            alert('Account not registered! Email or Username already exists.')
-          }
-          else{
             alert('Account successfully registered!')
-          }
-          
 
-          document.cookie = `full_name=${full_name.value}`
-          document.cookie = `username=${username.value}`
-          document.cookie = `email=${email.value}`
-          document.cookie = `password=${password.value}`
+            document.cookie = `full_name=${full_name.value}`
+            document.cookie = `username=${username.value}`
 
-          full_name.value = ''
-          username.value = ''
-          email.value = ''
-          password.value = ''
+            full_name.value = ''
+            username.value = ''
+            email.value = ''
+            password.value = ''
 
-          console.log(response)
-
-          router.push('/')
+            console.log(response)
+            
+            router.push('/')         
         })
         .catch(error => {
           if (error.response) {
