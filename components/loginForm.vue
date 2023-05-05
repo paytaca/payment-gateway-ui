@@ -45,6 +45,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import Cookies from 'js-cookie'
 
 let email = ref('')
 let password = ref('')
@@ -70,8 +71,9 @@ async function submitloginForm() {
         console.log(password.value)
         console.log(response)
         console.log(response.status)
-        console.log(response.token)
+        console.log(response.full_name)
         if (response.token != null) {
+            Cookies.set('token', response.token) // store token in a cookie
             router.push('/dashboard')
             email.value = ''
             password.value = ''
