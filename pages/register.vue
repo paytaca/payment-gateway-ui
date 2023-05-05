@@ -96,12 +96,14 @@
 
           document.cookie = `full_name=${full_name.value}`
           document.cookie = `username=${username.value}`
-          
+
           full_name.value = ''
           username.value = ''
           email.value = ''
           password.value = ''
 
+          console.log(response)
+          
           router.push('/')
         })
         .catch(error => {
