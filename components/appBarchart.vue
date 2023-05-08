@@ -22,7 +22,7 @@
       this.loaded = false
 
       try {
-        const response = await axios.get('http://192.168.1.16:7878/test/api/total/', { mode: "no-cors"})
+        const response = await axios.get('http://192.168.1.6:7878/payment-gateway/total-sales-month/', { mode: "no-cors"})
         const month = response.data.map(item => item.total_sale)
 
         this.chartData = {

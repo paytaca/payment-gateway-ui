@@ -7,9 +7,6 @@
     </div>
     <!--Charts-->
     <div class="content">
-      <!-- <div v-for="s in sales">
-        {{ s.total_sale }}
-      </div> -->
       <!--FIRST ROW CONTENT-->
       <div class="flex">
 
@@ -48,8 +45,7 @@
     
 </template>
 
-<script setup>
-// const { data: sales } = await useFetch('http://192.168.1.16:7878/test/api/total')
+<script >
 </script>  
 
 <style>
