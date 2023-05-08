@@ -96,99 +96,102 @@
   </template>
   
   <script>
-import { ref } from 'vue'
-
-export default {
-  data() {
-    return {
-      full_name: '',
-      username: '',
-      email: '',
-      password: '',
-      errors: [],
-      isEditing: false
-    }
-  },
-  async mounted() {
-    // Get cookie
-    const cookieString = document.cookie
-    const cookies = {}
-    cookieString.split(';').forEach(cookie => {
-      const [name, value] = cookie.trim().split('=')
-      cookies[name] = value
-    })
-
-    // Get user information from cookie
-    this.full_name = cookies.full_name
-    this.username = cookies.username
-    this.email = cookies.email
-    this.password = cookies.password
-  },
-  setup() {
-    const full_name = ref('')
-    const username = ref('')
-    const email = ref('')
-    const password = ref('')
-    const errors = ref([])
-    const isEditing = ref(false)
-
-    async function submitForm() {
-      errors.value = []
-
-      await $fetch('http://192.168.1.8:7878/payment-gateway/user/edit/', {
-        method: 'PUT',
-        body: {
-          full_name: full_name.value,
-          username: username.value,
-          email: email.value,
-          password: password.value
-        }
-      })
-        .then(response => {
-          alert('Account successfully updated!')
-
-          // Store user's updated information in cookie
-          document.cookie = `full_name=${full_name.value}`
-          document.cookie = `username=${username.value}`
-          document.cookie = `email=${email.value}`
-          document.cookie = `password=${password.value}`
-
-          toggleEdit();
-        })
-        .catch(error => {
-          if (error.response) {
-            for (const property in error.response._data) {
-              errors.value.push(`${property}: ${error.response._data[property]}`)
+  import { ref } from 'vue'
+  
+  export default {
+    data() {
+      return {
+        full_name: '',
+        username: '',
+        email: '',
+        password: '',
+        errors: [],
+        isEditing: false
+      }
+    },
+    async mounted() {
+      $fetch('http://192.168.1.6:7878/payment-gateway/user/info/', {
+            method: 'GET',
+            params: {
+              token: localStorage.token,
             }
-            console.log(JSON.stringify(error.response))
-          } else if (error.message) {
-            errors.value.push('Something went wrong')
-            console.log(JSON.stringify(error))
+          })
+          .then(response => {
+            console.log(response)
+            this.full_name = response.full_name
+            this.username = response.username
+            this.email = response.email
+            this.password = response.password
+          })
+  
+      
+    },
+    setup() {
+      const full_name = ref('')
+      const username = ref('')
+      const email = ref('')
+      const password = ref('')
+      const errors = ref([])
+      const isEditing = ref(false)
+  
+      async function submitForm() {
+        errors.value = []
+  
+        await $fetch('http://192.168.1.6:7878/payment-gateway/user/edit/', {
+          method: 'PUT',
+          body: {
+            full_name: full_name.value,
+            username: username.value,
+            email: email.value,
+            password: password.value
           }
         })
-
-    }
-    async function toggleEdit() {
-        if (isEditing.value) {
-            await submitForm()
-        }
-        isEditing.value = !isEditing.value
-    }
-
-
-    return {
-      full_name,
-      username,
-      email,
-      password,
-      errors,
-      isEditing,
-      submitForm,
-      toggleEdit
+          .then(response => {
+            alert('Account successfully updated!')
+  
+            // Store user's updated information in cookie
+            document.cookie = `full_name=${full_name.value}`
+            document.cookie = `username=${username.value}`
+            document.cookie = `email=${email.value}`
+            document.cookie = `password=${password.value}`
+  
+            toggleEdit();
+          })
+          .catch(error => {
+            if (error.response) {
+              for (const property in error.response._data) {
+                errors.value.push(`${property}: ${error.response._data[property]}`)
+              }
+              console.log(JSON.stringify(error.response))
+            } else if (error.message) {
+              errors.value.push('Something went wrong')
+              console.log(JSON.stringify(error))
+            }
+          })
+  
+      }
+      async function toggleEdit() {
+          if (isEditing.value) {
+              await submitForm()
+          }
+          isEditing.value = !isEditing.value
+      }
+  
+  
+      return {
+        full_name,
+        username,
+        email,
+        password,
+        errors,
+        isEditing,
+        submitForm,
+        toggleEdit
+      }
     }
   }
-}
-</script>
+  </script>
+
   
   <style>
     body{

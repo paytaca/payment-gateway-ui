@@ -40,6 +40,8 @@
     methods: {
         logout() {
         localStorage.removeItem('authenticated')
+        localStorage.email = null
+        localStorage.token = null
         this.$router.push('/')
         }
     }

@@ -56,7 +56,7 @@ async function submitloginForm() {
   errors.value = []
 
   if (errors.value.length === 0) {
-    await $fetch('http://192.168.1.8:7878/payment-gateway/user/login/', {
+    await $fetch('http://192.168.1.6:7878/payment-gateway/user/login/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -71,8 +71,20 @@ async function submitloginForm() {
         console.log(password.value)
         console.log(response)
         console.log(response.status)
-        console.log(response.full_name)
+        console.log(response.token)
+        $fetch('http://192.168.1.6:7878/payment-gateway/user/info/', {
+          method: 'GET',
+          params: {
+            token: response.token,
+          }
+        })
+        .then(response => {
+          console.log(response)
+        })
         if (response.token != null) {
+            localStorage.email = email.value
+            localStorage.token = response.token
+            console.log(localStorage.token)
             router.push('/dashboard')
             email.value = ''
             password.value = ''

@@ -40,19 +40,16 @@
         }
       },
       mounted() {
-        // Get cookie
-        const cookieString = document.cookie
-        const cookies = {}
-        cookieString.split(';').forEach(cookie => {
-          const [name, value] = cookie.trim().split('=')
-          cookies[name] = value
+        $fetch('http://192.168.1.6:7878/payment-gateway/user/info/', {
+          method: 'GET',
+          params: {
+            token: localStorage.token,
+          }
         })
-
-        // Get full name
-        const full_name_cookie = cookies.full_name
-        if (full_name_cookie) {
-          this.full_name = full_name_cookie
-        }
+        .then(response => {
+          console.log(response)
+          this.full_name = response.full_name
+        })
       }
     }
 </script>

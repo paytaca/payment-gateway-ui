@@ -82,7 +82,7 @@
     errors.value = []
   
     if (errors.value.length === 0) {
-      await $fetch('http://192.168.1.8:7878/payment-gateway/user/signup/', {
+      await $fetch('http://192.168.1.6:7878/payment-gateway/user/signup/', {
         method: 'POST',
         body: {
           full_name: full_name.value,
@@ -93,11 +93,6 @@
       })
         .then(response => {
             alert('Account successfully registered!')
-
-            document.cookie = `full_name=${full_name.value}`
-            document.cookie = `username=${username.value}`
-            document.cookie = `email=${email.value}`
-            document.cookie = `password=${password.value}`
 
             full_name.value = ''
             username.value = ''
