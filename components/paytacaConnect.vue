@@ -77,9 +77,10 @@ async function submitForm() {
   errors.value = []
 
   if (errors.value.length === 0) {
-    await $fetch('http://192.168.1.15:7878/api/test/create/', {
+    await $fetch('http://192.168.1.6:7878/payment-gateway/user/wallet-update/', {
       method: 'POST',
       body: {
+        email: localStorage.email,
         xpub_key: xpub.value,
 	    wallet_hash: hash.value
       }
