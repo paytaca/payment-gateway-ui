@@ -81,7 +81,9 @@ async function submitloginForm() {
         .then(response => {
           console.log(response)
           console.log(response.user_id)
+          console.log(response.username)
           localStorage.user_id = response.user_id
+          localStorage.username = response.username
         })
         if (response.token != null) {
             localStorage.email = email.value

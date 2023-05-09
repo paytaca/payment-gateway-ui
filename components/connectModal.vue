@@ -93,7 +93,9 @@ async function submitForm() {
     })
       .then(response => {
         console.log('response', response);
-        console.log(localStorage.user_id)
+        localStorage.store_url = url.value
+        console.log(localStorage.store_url)
+        // console.log(localStorage.user_id)
         url.value = ''
         key.value = ''
         secret.value = ''
