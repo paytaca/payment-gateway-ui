@@ -47,7 +47,6 @@
             <p class="text-xs font-normal px-4 pt-1 text-blue-500 dark:text-neutral-200" v-for="s in sales">{{ formatPercentage(s.total_customers_percentage) }} from yesterday</p>
         </div>
         <!-- Remove class [ h-24 ] when adding a card block -->
-        <!-- Remove class [ border-gray-300  dark:border-gray-700 bg-red-300 ] to remove dotted border -->
     </div>
 </div>
 </template>
