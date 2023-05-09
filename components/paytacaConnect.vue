@@ -72,6 +72,7 @@ import { ref } from 'vue'
 let xpub = ref('')
 let hash = ref('')
 let errors = ref([])
+const router = useRouter()
 
 async function submitForm() {
   errors.value = []
@@ -82,10 +83,12 @@ async function submitForm() {
       body: {
         email: localStorage.email,
         xpub_key: xpub.value,
-	    wallet_hash: hash.value
+	      wallet_hash: hash.value
       }
     })
       .then(response => {
+        alert("Wallet successfully connected!")
+        router.push('/stores')
         console.log('response', response);
       })
       .catch(error => {
