@@ -13,29 +13,27 @@
                                     </button>
                                 </div>
                             <div class="flex items-center">
-                                    <img class="w-30 mx-auto mt-3 mb-1" src="~/assets/images/woocommerce_tag.png "/>
-                                </div>
+                                <img class="w-30 mx-auto mt-3 mb-1" src="~/assets/images/woocommerce_tag.png "/>
+                            </div>
                                 <!--body-->
-                                <div class="relative p-6 pt-0 flex-auto text-left">
+                                <form class="relative p-6 pt-0 flex-auto text-left" v-on:submit.prevent="submitForm">
                                     <p class="my-4 font-medium text-slate-700  text-base leading-relaxed">
                                        Store URL:
                                     </p>
-                                    <input class="w-full bg-gray-100 rounded-lg p-2 ml-0" v-model="message" placeholder="URL...">
+                                    <input class="w-full bg-gray-100 rounded-lg p-2 ml-0" v-model="url" placeholder="URL...">
                                     <p class="my-4 font-medium text-slate-700 text-base leading-relaxed">
                                        Enter your Consumer Key:
                                     </p>
-                                    <input class="w-full bg-gray-100 rounded-lg p-2 ml-0" v-model="message" placeholder="Consumer Key...">
+                                    <input class="w-full bg-gray-100 rounded-lg p-2 ml-0" v-model="key" placeholder="Consumer Key...">
                                     <p class="my-4 font-medium text-slate-700 text-base leading-relaxed">
                                        Enter your Consumer Secret:
                                     </p>
-                                    <input class="w-full bg-gray-100 rounded-lg p-2 ml-0" v-model="message" placeholder="Consumer Secret...">
-                                </div>
-                                <!--footer-->
-                                <div class="flex items-center justify-end p-2 px-5 py-5">
-                                    <button class="text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-4 w-full" type="button">
-                                    Connect
+                                    <input class="w-full bg-gray-100 rounded-lg p-2 ml-0" v-model="secret" placeholder="Consumer Secret...">
+                                    <!--footer-->
+                                    <button class="text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-4 w-full">
+                                        Connect
                                     </button>
-                                </div>
+                                </form>
                                 </div>
                             </div>
                         </div>
@@ -58,6 +56,61 @@
             }
         }
     }
+</script>
+
+<script setup>
+import { ref } from 'vue'
+
+let store_type = ref('')
+let url = ref('')
+let key = ref('')
+let secret = ref('')
+let errors = ref([])
+
+async function submitForm() {
+  errors.value = []
+
+  await $fetch('http://192.168.1.6:7878/payment-gateway/user/info/', {
+            method: 'GET',
+            params: {
+              token: localStorage.token,
+            }
+          })
+          .then(response => {
+            console.log(response)
+            localStorage.user_id = response.user_id
+          })
+  if (errors.value.length === 0) {
+    await $fetch('http://192.168.1.6:7878/payment-gateway/user/storefront/', {
+      method: 'POST',
+      body: {
+        account: parseInt(localStorage.user_id),
+        store_type: "woocommerce",
+        store_url: url.value,
+	    key: key.value,
+        secret: secret.value
+      }
+    })
+      .then(response => {
+        console.log('response', response);
+        console.log(localStorage.user_id)
+        url.value = ''
+        key.value = ''
+        secret.value = ''
+      })
+      .catch(error => {
+        if (error.response) {
+          for (const property in error.response._data) {
+            errors.value.push(`${property}: ${error.response._data[property]}`)
+          }
+          console.log(JSON.stringify(error.response))
+        } else if (error.message) {
+          errors.value.push('Something went wrong')
+          console.log(JSON.stringify(error))
+        }
+      })
+  }
+}
 </script>
 
 <style>

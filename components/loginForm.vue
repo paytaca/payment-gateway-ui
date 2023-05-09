@@ -80,11 +80,12 @@ async function submitloginForm() {
         })
         .then(response => {
           console.log(response)
+          console.log(response.user_id)
+          localStorage.user_id = response.user_id
         })
         if (response.token != null) {
             localStorage.email = email.value
             localStorage.token = response.token
-            console.log(localStorage.token)
             router.push('/dashboard')
             email.value = ''
             password.value = ''
