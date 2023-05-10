@@ -10,11 +10,11 @@
       <!--FIRST ROW CONTENT-->
       <div class="flex">
 
-        <div class="inline-block border-0 rounded-lg mt-5 py-2 px-2 shadow-lg flex-col bg-white outline-none focus:outline-none mx-auto w-3/4 h-72">
+        <div v-if="isWalletConnected, isWooCommerceConnected" class="inline-block border-0 rounded-lg mt-5 py-2 px-2 shadow-lg flex-col bg-white outline-none focus:outline-none mx-auto w-3/4 h-72">
           <appTodaySales />
         </div>
         
-          <div class="border-0 rounded-lg mt-5 shadow-lg flex-col bg-white outline-none focus:outline-none ml-5 mr-5 py-2 w-1/4 h-72">
+          <div v-if="isWalletConnected, isWooCommerceConnected" class="border-0 rounded-lg mt-5 shadow-lg flex-col bg-white outline-none focus:outline-none ml-5 mr-5 py-2 w-1/4 h-72">
             
             <appPiechart />
           </div>
@@ -23,11 +23,11 @@
       <!--SECOND ROW CONTENT-->
       <div class="flex">
 
-        <div class="border-0 rounded-lg mt-5 px-2 shadow-lg flex-row bg-white outline-none focus:outline-none py-2 w-2/4 h-72">
+        <div v-if="isWalletConnected, isWooCommerceConnected" class="border-0 rounded-lg mt-5 px-2 shadow-lg flex-row bg-white outline-none focus:outline-none py-2 w-2/4 h-72">
           <appBarchart />
         </div>
           
-        <div class="border-0 rounded-lg mt-5 px-2 shadow-lg flex-row bg-white outline-none focus:outline-none py-2 ml-5 mb-2 mr-5 w-2/4 h-72">
+        <div v-if="isWalletConnected, isWooCommerceConnected" class="border-0 rounded-lg mt-5 px-2 shadow-lg flex-row bg-white outline-none focus:outline-none py-2 ml-5 mb-2 mr-5 w-2/4 h-72">
             <appPolarchart />
         </div>
 
@@ -35,18 +35,33 @@
       <!--THIRD ROW CONTENT-->
       <div class="flex">
 
-       <div class="inline-block border-0 rounded-lg mt-3 px-2 py-2 shadow-lg flex-col bg-white outline-none focus:outline-none mr-5 w-full mb-5 h-72">
+       <div v-if="isWalletConnected, isWooCommerceConnected" class="inline-block border-0 rounded-lg mt-3 px-2 py-2 shadow-lg flex-col bg-white outline-none focus:outline-none mr-5 w-full mb-5 h-72">
           <appLinechart />
         </div>
 
       </div>
 </div>
-    
-    
 </template>
 
-<script >
-</script>  
+<script>
+export default {
+  data() {
+    return {
+      isWalletConnected: false,
+      isWooCommerceConnected: false
+    };
+  },
+  mounted() {
+    // Check wallet connection status and update isWalletConnected
+    // For example:
+    // this.isWalletConnected = checkWalletConnection();
+
+    // Check WooCommerce connection status and update isWooCommerceConnected
+    // For example:
+    // this.isWooCommerceConnected = checkWooCommerceConnection();
+  },
+};
+</script>
 
 <style>
   body{

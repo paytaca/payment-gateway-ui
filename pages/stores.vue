@@ -124,7 +124,7 @@
 
         <div class="h-16"></div>
         
-        <div class="mb-5">
+        <div class="mb-5" v-if="isWooCommerceConnected">
             <h2 class="mt-3 text-xl font-bold">Connected Stores...</h2>
 
             <div class="w-1/5 h-1/6 rounded-3xl overflow-hidden shadow-lg bg-[#ffffff] object-center mt-5 inline-block">
@@ -145,7 +145,8 @@
     name: "regular-modal",
         data() {
             return {
-            showModal: false
+            showModal: false,
+            isWooCommerceConnected: false
             }
         },
         methods: {
