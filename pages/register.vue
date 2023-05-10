@@ -82,7 +82,7 @@
     errors.value = []
   
     if (errors.value.length === 0) {
-      await $fetch('http://192.168.1.6:7878/payment-gateway/user/signup/', {
+      await $fetch('http://192.168.1.12:7878/payment-gateway/user/signup/', {
         method: 'POST',
         body: {
           full_name: full_name.value,
@@ -94,11 +94,21 @@
         .then(response => {
             alert('Account successfully registered!')
 
+            // Store the new account data in localStorage
+            const user = {
+              full_name: full_name.value,
+              username: username.value,
+              email: email.value,
+              password: password.value
+            }
+            localStorage.setItem('user', JSON.stringify(user))
+
             full_name.value = ''
             username.value = ''
             email.value = ''
             password.value = ''
 
+            console.log(user)
             console.log(response)
             
             router.push('/')         

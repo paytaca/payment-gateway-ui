@@ -59,7 +59,7 @@
     //     }
     // }
     // const { data: sales } = await useFetch('http://192.168.1.6:7878/payment-gateway/total-sales/', options)
-    const { data: sales } = await useFetch('http://192.168.1.6:7878/payment-gateway/total-sales/')
+    const { data: sales } = await useFetch('http://192.168.1.12:7878/payment-gateway/total-sales/')
 
 </script>
 

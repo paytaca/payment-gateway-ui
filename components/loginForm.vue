@@ -56,7 +56,7 @@ async function submitloginForm() {
   errors.value = []
 
   if (errors.value.length === 0) {
-    await $fetch('http://192.168.1.6:7878/payment-gateway/user/login/', {
+    await $fetch('http://192.168.1.12:7878/payment-gateway/user/login/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -72,7 +72,7 @@ async function submitloginForm() {
         console.log(response)
         console.log(response.status)
         console.log(response.token)
-        $fetch('http://192.168.1.6:7878/payment-gateway/user/info/', {
+        $fetch('http://192.168.1.12:7878/payment-gateway/user/info/', {
           method: 'GET',
           params: {
             token: response.token,
@@ -80,20 +80,26 @@ async function submitloginForm() {
         })
         .then(response => {
           console.log(response)
-          console.log(response.user_id)
-          console.log(response.username)
           localStorage.user_id = response.user_id
           localStorage.username = response.username
         })
         if (response.token != null) {
             localStorage.email = email.value
             localStorage.token = response.token
-            router.push('/dashboard')
-            email.value = ''
-            password.value = ''
-        } else {
-            alert('Invalid Email or Password')
-            console.log(response)
+            console.log(localStorage.token)
+
+            const storedUser = localStorage.getItem('user')
+
+            if (storedUser) {
+              // New user logging in for the first time
+              localStorage.removeItem('user')
+              router.push('/wallet')
+            } else {
+              // Existing user logging in
+              // Perform login logic here
+              // Redirect to dashboard or any other page as needed
+              router.push('/dashboard')
+            }
         }
     })
       .catch(error => {

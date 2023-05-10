@@ -70,7 +70,7 @@ let errors = ref([])
 async function submitForm() {
   errors.value = []
 
-  await $fetch('http://192.168.1.6:7878/payment-gateway/user/info/', {
+  await $fetch('http://192.168.1.12:7878/payment-gateway/user/info/', {
             method: 'GET',
             params: {
               token: localStorage.token,
