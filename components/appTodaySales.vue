@@ -51,7 +51,7 @@
 </div>
 </template>
 
-<script setup>
+<!-- <script setup>
     // store_url = localStorage.store_url
     // const options = {
     //     params: {
@@ -61,17 +61,41 @@
     // const { data: sales } = await useFetch('http://192.168.1.6:7878/payment-gateway/total-sales/', options)
     const { data: sales } = await useFetch('http://192.168.1.12:7878/payment-gateway/total-sales/')
 
-</script>
+</script> -->
 
 <script>
 export default {
-  methods: {
+    methods: {
     formatPercentage(value) {
       return (value * 100).toFixed(1) + '%';
     }
-  }
-}
+  },
+  async mounted() {
+    const store = localStorage.store_url;
+    try {
+      const response = await fetch('http://192.168.1.12:7878/payment-gateway/total-sales/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          store_url: store,
+        }),
+      });
+      if (response.ok) {
+        const { data: sales } = await response.json();
+        console.log(sales);
+        // Use the sales data as needed in your component
+      } else {
+        console.error('Failed to fetch sales data');
+      }
+    } catch (error) {
+      console.error('An error occurred while fetching sales data:', error);
+    }
+  },
+};
 </script>
+
 
 <style>
 

@@ -47,7 +47,8 @@
     name: "connectModal",
         data() {
             return {
-            showModal: false
+              connectedStoreCount: 0,
+              showModal: false
             }
         },
         methods: {
@@ -81,19 +82,21 @@ async function submitForm() {
             localStorage.user_id = response.user_id
           })
   if (errors.value.length === 0) {
-    await $fetch('http://192.168.1.6:7878/payment-gateway/user/storefront/', {
+    await $fetch('http://192.168.1.12:7878/payment-gateway/user/storefront/', {
       method: 'POST',
       body: {
         account: parseInt(localStorage.user_id),
         store_type: "woocommerce",
         store_url: url.value,
-	    key: key.value,
+	      key: key.value,
         secret: secret.value
       }
     })
       .then(response => {
+        alert("Store is successfully connected!")
         console.log('response', response);
         localStorage.store_url = url.value
+        this.connectedStoreCount += 1;
         console.log(localStorage.store_url)
         // console.log(localStorage.user_id)
         url.value = ''
@@ -114,7 +117,3 @@ async function submitForm() {
   }
 }
 </script>
-
-<style>
-
-</style>

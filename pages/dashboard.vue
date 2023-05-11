@@ -8,6 +8,7 @@
     <!--Charts-->
     <div class="content">
       <!--FIRST ROW CONTENT-->
+      <dropdown :isWooCommerceConnected="isWooCommerceConnected" />
       <div class="flex">
 
         <div v-if="isWalletConnected, isWooCommerceConnected" class="inline-block border-0 rounded-lg mt-5 py-2 px-2 shadow-lg flex-col bg-white outline-none focus:outline-none mx-auto w-3/4 h-72">
@@ -44,12 +45,25 @@
 </template>
 
 <script>
+import dropdown from '@/components/dropdown.vue'
+
+let isWooCommerceConnected = ref(false)
+
 export default {
+  props: {
+    connectedStoreCount: {
+      type: Number,
+      required: true
+    }
+  },
   data() {
     return {
       isWalletConnected: false,
       isWooCommerceConnected: false
     };
+  },
+  components: {
+    dropdown
   },
   mounted() {
     // Check wallet connection status and update isWalletConnected
