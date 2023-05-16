@@ -51,18 +51,6 @@
 </div>
 </template>
 
-<!-- <script setup>
-    // store_url = localStorage.store_url
-    // const options = {
-    //     params: {
-    //         store_url: "url"
-    //     }
-    // }
-    // const { data: sales } = await useFetch('http://192.168.1.6:7878/payment-gateway/total-sales/', options)
-    const { data: sales } = await useFetch('http://192.168.1.12:7878/payment-gateway/total-sales/')
-
-</script> -->
-
 <script>
 export default {
     methods: {

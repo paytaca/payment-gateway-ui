@@ -8,7 +8,7 @@
     <!--Charts-->
     <div class="content">
       <!--FIRST ROW CONTENT-->
-      <dropdown :isWooCommerceConnected="isWooCommerceConnected" />
+      <dropdown />
       <div class="flex">
 
         <div v-if="isWalletConnected, isWooCommerceConnected" class="inline-block border-0 rounded-lg mt-5 py-2 px-2 shadow-lg flex-col bg-white outline-none focus:outline-none mx-auto w-3/4 h-72">
@@ -45,49 +45,39 @@
 </template>
 
 <script>
-import dropdown from '@/components/dropdown.vue'
-import { ref, watchEffect } from 'vue'
-
 export default {
-  components: {
-    dropdown
-  },
-  setup() {
-    const isWooCommerceConnected = ref(false);
-    const isWalletConnected = ref(false);
-
-    // Simulated function to check WooCommerce connection status
-    const checkWooCommerceConnection = () => {
-      // Replace this with your actual logic to check the connection status
-      // For example, you can make an API call to determine the status
-      // and update `isWooCommerceConnected` accordingly
-      const isConnected = true; // Simulated result
-      isWooCommerceConnected.value = isConnected;
-    };
-
-    // Simulated function to check wallet connection status
-    const checkWalletConnection = () => {
-      // Replace this with your actual logic to check the connection status
-      // For example, you can make an API call to determine the status
-      // and update `isWalletConnected` accordingly
-      const isConnected = true; // Simulated result
-      isWalletConnected.value = isConnected;
-    };
-
-    // Watch the connection status from the connectModal.vue script
-    watchEffect(() => {
-      checkWooCommerceConnection();
-      checkWalletConnection();
-    });
-
+  data() {
     return {
-      isWooCommerceConnected,
-      isWalletConnected
-    };
+      isWooCommerceConnected: false,
+      showDropdown: true // Add a new data property to control the visibility of the dropdown
+    }
+  },
+  mounted() {
+    $fetch('http://192.168.1.10:7878/payment-gateway/user/info/', {
+      method: 'GET',
+      params: {
+        token: localStorage.token,
+      }
+    })
+    .then(response => {
+      console.log(response)
+      if (response.woocommerce === true) {
+        this.isWooCommerceConnected = true;
+      } else {
+        this.isWooCommerceConnected = false;
+      }
+      
+      if (this.isWooCommerceConnected) {
+        // Perform a check to see if only one store is connected
+        // Assuming you have an array of connected stores named "stores"
+        if (stores.length === 0) {
+          this.showDropdown = false; // Hide the dropdown
+        }
+      }
+    })
   }
-};
+}
 </script>
-
 
 
 <style>

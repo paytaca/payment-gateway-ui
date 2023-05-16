@@ -88,6 +88,10 @@ async function submitForm() {
     })
       .then(response => {
         alert("Wallet successfully connected!")
+        
+        localStorage.setItem('xpub', xpub.value)
+        localStorage.setItem('hash', hash.value)
+
         router.push('/stores')
         console.log('response', response);
       })
@@ -105,7 +109,3 @@ async function submitForm() {
   }
 }
 </script>
-
-<style>
-
-</style>

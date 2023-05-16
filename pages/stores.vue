@@ -141,36 +141,29 @@
 </template>
 
 <script>
-import dropdown from '@/components/dropdown.vue'
-import { ref, watchEffect } from 'vue'
-
 export default {
-  components: {
-    dropdown
-  },
   data() {
     return {
-      showModal: false
-    };
-  },
-  methods: {
-    toggleModal() {
-      this.showModal = !this.showModal;
+      isWooCommerceConnected: false
     }
   },
-  setup() {
-    const isWooCommerceConnected = ref(false);
-
-    // Watch the connection status from connectModal.vue
-    watchEffect(() => {
-        isWooCommerceConnected.value = isWooCommerceConnected.value;
-    });
-
-    return {
-      isWooCommerceConnected
-    };
+  mounted() {
+    $fetch('http://192.168.1.10:7878/payment-gateway/user/info/', {
+      method: 'GET',
+      params: {
+        token: localStorage.token,
+      }
+    })
+    .then(response => {
+      console.log(response)
+      if (response.woocommerce === true) {
+        this.isWooCommerceConnected = true;
+      } else {
+        this.isWooCommerceConnected = false;
+      }
+    })
   }
-};
+}
 </script>
 
 
