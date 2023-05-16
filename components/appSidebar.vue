@@ -42,6 +42,7 @@
         localStorage.removeItem('authenticated')
         localStorage.email = null
         localStorage.token = null
+        localStorage.store_url = null
         this.$router.push('/')
         }
     }

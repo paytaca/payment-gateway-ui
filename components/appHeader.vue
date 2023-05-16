@@ -48,6 +48,7 @@
         })
         .then(response => {
           console.log(response)
+          localStorage.store_url = response.woocommerce_url
           this.full_name = response.full_name
         })
       }
