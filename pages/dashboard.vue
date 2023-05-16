@@ -46,36 +46,49 @@
 
 <script>
 import dropdown from '@/components/dropdown.vue'
-
-let isWooCommerceConnected = ref(false)
+import { ref, watchEffect } from 'vue'
 
 export default {
-  props: {
-    connectedStoreCount: {
-      type: Number,
-      required: true
-    }
-  },
-  data() {
-    return {
-      isWalletConnected: false,
-      isWooCommerceConnected: false
-    };
-  },
   components: {
     dropdown
   },
-  mounted() {
-    // Check wallet connection status and update isWalletConnected
-    // For example:
-    // this.isWalletConnected = checkWalletConnection();
+  setup() {
+    const isWooCommerceConnected = ref(false);
+    const isWalletConnected = ref(false);
 
-    // Check WooCommerce connection status and update isWooCommerceConnected
-    // For example:
-    // this.isWooCommerceConnected = checkWooCommerceConnection();
-  },
+    // Simulated function to check WooCommerce connection status
+    const checkWooCommerceConnection = () => {
+      // Replace this with your actual logic to check the connection status
+      // For example, you can make an API call to determine the status
+      // and update `isWooCommerceConnected` accordingly
+      const isConnected = true; // Simulated result
+      isWooCommerceConnected.value = isConnected;
+    };
+
+    // Simulated function to check wallet connection status
+    const checkWalletConnection = () => {
+      // Replace this with your actual logic to check the connection status
+      // For example, you can make an API call to determine the status
+      // and update `isWalletConnected` accordingly
+      const isConnected = true; // Simulated result
+      isWalletConnected.value = isConnected;
+    };
+
+    // Watch the connection status from the connectModal.vue script
+    watchEffect(() => {
+      checkWooCommerceConnection();
+      checkWalletConnection();
+    });
+
+    return {
+      isWooCommerceConnected,
+      isWalletConnected
+    };
+  }
 };
 </script>
+
+
 
 <style>
   body{

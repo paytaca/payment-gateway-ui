@@ -20,15 +20,15 @@
                                     <p class="my-4 font-medium text-slate-700  text-base leading-relaxed">
                                        Store URL:
                                     </p>
-                                    <input class="w-full bg-gray-100 rounded-lg p-2 ml-0" v-model="url" placeholder="URL...">
+                                    <input class="w-full bg-gray-100 rounded-lg p-2 ml-0" v-model="url" placeholder="URL..." required>
                                     <p class="my-4 font-medium text-slate-700 text-base leading-relaxed">
                                        Enter your Consumer Key:
                                     </p>
-                                    <input class="w-full bg-gray-100 rounded-lg p-2 ml-0" v-model="key" placeholder="Consumer Key...">
+                                    <input class="w-full bg-gray-100 rounded-lg p-2 ml-0" v-model="key" placeholder="Consumer Key..." required>
                                     <p class="my-4 font-medium text-slate-700 text-base leading-relaxed">
                                        Enter your Consumer Secret:
                                     </p>
-                                    <input class="w-full bg-gray-100 rounded-lg p-2 ml-0" v-model="secret" placeholder="Consumer Secret...">
+                                    <input class="w-full bg-gray-100 rounded-lg p-2 ml-0" v-model="secret" placeholder="Consumer Secret..." required>
                                     <!--footer-->
                                     <button class="text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-4 w-full">
                                         Connect
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-     export default {
+  export default {
     name: "connectModal",
         data() {
             return {
@@ -67,28 +67,30 @@ let url = ref('')
 let key = ref('')
 let secret = ref('')
 let errors = ref([])
+let isConnected = ref(false) // Variable to track the connection status
 
 async function submitForm() {
   errors.value = []
 
-  await $fetch('http://192.168.1.12:7878/payment-gateway/user/info/', {
-            method: 'GET',
-            params: {
-              token: localStorage.token,
-            }
-          })
-          .then(response => {
-            console.log(response)
-            localStorage.user_id = response.user_id
-          })
+  await $fetch('http://192.168.1.10:7878/payment-gateway/user/info/', {
+    method: 'GET',
+    params: {
+      token: localStorage.token,
+    }
+  })
+    .then(response => {
+      console.log(response)
+      localStorage.user_id = response.user_id
+    })
+
   if (errors.value.length === 0) {
-    await $fetch('http://192.168.1.12:7878/payment-gateway/user/storefront/', {
+    await $fetch('http://192.168.1.10:7878/payment-gateway/user/storefront/', {
       method: 'POST',
       body: {
         account: parseInt(localStorage.user_id),
         store_type: "woocommerce",
         store_url: url.value,
-	      key: key.value,
+        key: key.value,
         secret: secret.value
       }
     })
@@ -96,9 +98,7 @@ async function submitForm() {
         alert("Store is successfully connected!")
         console.log('response', response);
         localStorage.store_url = url.value
-        this.connectedStoreCount += 1;
-        console.log(localStorage.store_url)
-        // console.log(localStorage.user_id)
+        isConnected.value = true; // Update the connection status
         url.value = ''
         key.value = ''
         secret.value = ''

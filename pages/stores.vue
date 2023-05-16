@@ -141,21 +141,38 @@
 </template>
 
 <script>
-    export default {
-    name: "regular-modal",
-        data() {
-            return {
-            showModal: false,
-            isWooCommerceConnected: false
-            }
-        },
-        methods: {
-            toggleModal: function(){
-            this.showModal = !this.showModal;
-            }
-        }
+import dropdown from '@/components/dropdown.vue'
+import { ref, watchEffect } from 'vue'
+
+export default {
+  components: {
+    dropdown
+  },
+  data() {
+    return {
+      showModal: false
+    };
+  },
+  methods: {
+    toggleModal() {
+      this.showModal = !this.showModal;
     }
+  },
+  setup() {
+    const isWooCommerceConnected = ref(false);
+
+    // Watch the connection status from connectModal.vue
+    watchEffect(() => {
+        isWooCommerceConnected.value = isWooCommerceConnected.value;
+    });
+
+    return {
+      isWooCommerceConnected
+    };
+  }
+};
 </script>
+
 
 <style>
     .content{

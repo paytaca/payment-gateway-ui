@@ -73,7 +73,7 @@ export default {
   async mounted() {
     const store = localStorage.store_url;
     try {
-      const response = await fetch('http://192.168.1.12:7878/payment-gateway/total-sales/', {
+      const response = await fetch('http://192.168.1.10:7878/payment-gateway/total-sales/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

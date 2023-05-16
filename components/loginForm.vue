@@ -56,7 +56,7 @@ async function submitloginForm() {
   errors.value = []
 
   if (errors.value.length === 0) {
-    await $fetch('http://192.168.1.11:7878/payment-gateway/user/login/', {
+    await $fetch('http://192.168.1.10:7878/payment-gateway/user/login/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -72,7 +72,7 @@ async function submitloginForm() {
         console.log(response)
         console.log(response.status)
         console.log(response.token)
-        $fetch('http://192.168.1.11:7878/payment-gateway/user/info/', {
+        $fetch('http://192.168.1.10:7878/payment-gateway/user/info/', {
           method: 'GET',
           params: {
             token: response.token,
