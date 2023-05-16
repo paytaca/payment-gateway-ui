@@ -49,8 +49,10 @@ export default {
   data() {
     return {
       isWooCommerceConnected: false,
-      showDropdown: true // Add a new data property to control the visibility of the dropdown
-    }
+      showDropdown: true, // Add a new data property to control the visibility of the dropdown
+      stores: [], // Define an empty array to store the connected stores
+      isWalletConnected: false // Add the isWalletConnected property
+    };
   },
   mounted() {
     $fetch('http://192.168.1.10:7878/payment-gateway/user/info/', {
@@ -60,7 +62,7 @@ export default {
       }
     })
     .then(response => {
-      console.log(response)
+      console.log(response);
       if (response.woocommerce === true) {
         this.isWooCommerceConnected = true;
       } else {
@@ -69,15 +71,19 @@ export default {
       
       if (this.isWooCommerceConnected) {
         // Perform a check to see if only one store is connected
-        // Assuming you have an array of connected stores named "stores"
-        if (stores.length === 0) {
+        if (this.stores.length === 0) {
           this.showDropdown = false; // Hide the dropdown
         }
       }
     })
+    .catch(error => {
+      console.error('An error occurred while fetching user info:', error);
+    });
   }
-}
+};
 </script>
+
+
 
 
 <style>
