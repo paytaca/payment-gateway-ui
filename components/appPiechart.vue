@@ -26,7 +26,7 @@ export default {
     this.loaded = false
 
     try {
-      const response = await axios.get('http://192.168.1.12:7878/payment-gateway/total-sales/', { mode: "no-cors"})
+      const response = await axios.get('http://192.168.1.10:7878/payment-gateway/total-sales-yesterday/', { mode: "no-cors"})
       const data = response.data.map(item => [item.total_sale, item.total_orders, item.total_customers, item.products_sold]) 
 
       this.chartData = {

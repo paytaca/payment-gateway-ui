@@ -26,8 +26,6 @@
             <p class="text-base font-normal px-4 pt-2 text-neutral-600 dark:text-neutral-200">Total Orders</p>
             <p class="text-xs font-normal px-4 pt-1 text-blue-500 dark:text-neutral-600" v-if="sales">{{ formatPercentage(sales.total_orders_percentage) }} from yesterday</p>
         </div>
-        <!-- Remove class [ h-24 ] when adding a card block -->
-        <!-- Remove class [ border-gray-300  dark:border-gray-700 bg-red-300 ] to remove dotted border -->
         <div class="rounded-xl shadow-md border-gray-300 dark:border-gray-700 bg-sky-200 h-40">
             <div class="fill-white mt-4 ml-4 py-2 px-2 w-10 h-10 bg-sky-300 rounded-3xl">
                 <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12.628 21.412l5.969-5.97 1.458 3.71-12.34 4.848-4.808-12.238 9.721 9.65zm-1.276-21.412h-9.352v9.453l10.625 10.547 9.375-9.375-10.648-10.625zm4.025 9.476c-.415-.415-.865-.617-1.378-.617-.578 0-1.227.241-2.171.804-.682.41-1.118.584-1.456.584-.361 0-1.083-.408-.961-1.218.052-.345.25-.697.572-1.02.652-.651 1.544-.848 2.276-.106l.744-.744c-.476-.476-1.096-.792-1.761-.792-.566 0-1.125.227-1.663.677l-.626-.627-.698.699.653.652c-.569.826-.842 2.021.076 2.938 1.011 1.011 2.188.541 3.413-.232.6-.379 1.083-.563 1.475-.563.589 0 1.18.498 1.078 1.258-.052.386-.26.763-.621 1.122-.451.451-.904.679-1.347.679-.418 0-.747-.192-1.049-.462l-.739.739c.463.458 1.082.753 1.735.753.544 0 1.087-.201 1.612-.597l.54.538.697-.697-.52-.521c.743-.896 1.157-2.209.119-3.247zm-9.678-7.476c.938 0 1.699.761 1.699 1.699 0 .938-.761 1.699-1.699 1.699-.938 0-1.699-.761-1.699-1.699 0-.938.761-1.699 1.699-1.699z"/></svg>
@@ -36,8 +34,6 @@
             <p class="text-base font-normal px-4 pt-2 text-neutral-600 dark:text-neutral-200">Products Sold</p>
             <p class="text-xs font-normal px-4 pt-1 text-blue-500 dark:text-neutral-600" v-if="sales">{{ formatPercentage(sales.products_sold_percentage) }} from yesterday</p>
         </div>
-        <!-- Remove class [ h-24 ] when adding a card block -->
-        <!-- Remove class [ border-gray-300  dark:border-gray-700 bg-red-300 ] to remove dotted border -->
         <div class="rounded-xl shadow-md border-gray-300 dark:border-gray-700 bg-purple-200 h-40">
             <div class="fill-white mt-4 ml-4 py-2 px-2 w-10 h-10 bg-purple-300 rounded-3xl">
                 <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M7 16.488l1.526-.723c1.792-.81 2.851-.344 4.349.232 1.716.661 2.365.883 3.077 1.164 1.278.506.688 2.177-.592 1.838-.778-.206-2.812-.795-3.38-.931-.64-.154-.93.602-.323.818 1.106.393 2.663.79 3.494 1.007.831.218 1.295-.145 1.881-.611.906-.72 2.968-2.909 2.968-2.909.842-.799 1.991-.135 1.991.72 0 .23-.083.474-.276.707-2.328 2.793-3.06 3.642-4.568 5.226-.623.655-1.342.974-2.204.974-.442 0-.922-.084-1.443-.25-1.825-.581-4.172-1.313-6.5-1.6v-5.662zm-1 6.538h-4v-8h4v8zm1-7.869v-1.714c-.006-1.557.062-2.447 1.854-2.861 1.963-.453 4.315-.859 3.384-2.577-2.761-5.092-.787-7.979 2.177-7.979 2.907 0 4.93 2.78 2.177 7.979-.904 1.708 1.378 2.114 3.384 2.577 1.799.415 1.859 1.311 1.853 2.879 0 .13-.011 1.171 0 1.665-.483-.309-1.442-.552-2.187.106-.535.472-.568.504-1.783 1.629-1.75-.831-4.456-1.883-6.214-2.478-.896-.304-2.04-.308-2.962.075l-1.683.699z"/></svg>
@@ -46,22 +42,9 @@
             <p class="text-base font-normal px-4 pt-2 text-neutral-600 dark:text-neutral-200">Total Costumers</p>
             <p class="text-xs font-normal px-4 pt-1 text-blue-500 dark:text-neutral-600" v-if="sales">{{ formatPercentage(sales.total_customers_percentage) }} from yesterday</p>
         </div>
-        <!-- Remove class [ h-24 ] when adding a card block -->
     </div>
 </div>
 </template>
-
-<!-- <script setup>
-    // store_url = localStorage.store_url
-    // const options = {
-    //     params: {
-    //         store_url: "url"
-    //     }
-    // }
-    // const { data: sales } = await useFetch('http://192.168.1.6:7878/payment-gateway/total-sales/', options)
-    const { data: sales } = await useFetch('http://192.168.1.12:7878/payment-gateway/total-sales/')
-
-</script> -->
 
 <script>
 export default {
@@ -104,13 +87,6 @@ export default {
         } else {
           this.sales = null;
         }
-        // console.log(this.sales)
-        // // const asd = responseData[0]
-        // console.log(responseData.store)
-        // console.log(responseData[0])
-        // const { data: sales } = asd
-        // console.log(sales)
-        // Use the sales data as needed in your component
       } else {
         console.error('Failed to fetch sales data')
       }

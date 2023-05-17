@@ -49,9 +49,10 @@ export default {
   data() {
     return {
       isWooCommerceConnected: false,
-      showDropdown: true, // Add a new data property to control the visibility of the dropdown
-      stores: [], // Define an empty array to store the connected stores
-      isWalletConnected: false // Add the isWalletConnected property
+      showDropdown: true,
+      stores: [],
+      isWalletConnected: false,
+      showModal: false
     };
   },
   mounted() {
@@ -70,9 +71,8 @@ export default {
       }
       
       if (this.isWooCommerceConnected) {
-        // Perform a check to see if only one store is connected
         if (this.stores.length === 0) {
-          this.showDropdown = false; // Hide the dropdown
+          this.showDropdown = false;
         }
       }
     })
@@ -82,8 +82,6 @@ export default {
   }
 };
 </script>
-
-
 
 
 <style>
