@@ -1,5 +1,5 @@
 <template>
-  <Bar v-if="loaded" :data="chartData" />
+  <Bar v-if="loaded" :data="chartData" :options="chartOptions"/>
 </template>
 
 <script>
@@ -15,7 +15,10 @@ export default {
   data() {
     return {
       loaded: false,
-      chartData: null
+      chartData: null,
+      chartOptions: {
+        maintainAspectRatio: false,
+      }
     }
   },
   async mounted() {
@@ -23,7 +26,7 @@ export default {
   const store = localStorage.store_url;
   console.log(store, 'monthly before')
   try {
-    const response = await fetch('http://192.168.1.10:7878/payment-gateway/total-sales-month/', {
+    const response = await fetch('http://192.168.1.7:7878/payment-gateway/total-sales-month/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

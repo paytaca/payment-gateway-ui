@@ -72,7 +72,7 @@ let isConnected = ref(false) // Variable to track the connection status
 async function submitForm() {
   errors.value = []
 
-  await $fetch('http://192.168.1.10:7878/payment-gateway/user/info/', {
+  await $fetch('http://192.168.1.7:7878/payment-gateway/user/info/', {
     method: 'GET',
     params: {
       token: localStorage.token,
@@ -84,7 +84,7 @@ async function submitForm() {
     })
 
   if (errors.value.length === 0) {
-    await $fetch('http://192.168.1.10:7878/payment-gateway/user/storefront/', {
+    await $fetch('http://192.168.1.7:7878/payment-gateway/user/storefront/', {
       method: 'POST',
       body: {
         account: parseInt(localStorage.user_id),
