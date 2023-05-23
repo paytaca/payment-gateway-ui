@@ -1,5 +1,6 @@
 <template>
-    <div class="container w-1/3 mx-auto items-center justify-center lg:justify-between bg-white p-6 pt-3 rounded-xl shadow-lg shadow-slate-300 my-5 h-full">
+  <div class="background">
+    <div class="container w-1/3 mx-auto items-center justify-center lg:justify-between bg-white p-6 pt-3 rounded-xl shadow-lg shadow-slate-300 my-5">
         <div class="columns ">
             <div class="w-full ">
                 <img class="w-52 mx-auto mt-2 mb-3" src="~/assets/images/bchlogo.png "/>
@@ -62,6 +63,7 @@
             </div>
         </div>
     </div>
+  </div>
   </template>
   
   <script setup>
@@ -123,3 +125,15 @@
     }
   }
   </script>
+
+<style>
+.background{
+    overflow: hidden;
+    background-color: #ececec;     
+    background: url(~/assets/images/bg.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+  }
+</style>

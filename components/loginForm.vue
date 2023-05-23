@@ -1,5 +1,5 @@
 <template>
-    <div class="container w-1/3 mx-auto items-center justify-center lg:justify-between bg-white p-6 pt-3 rounded-xl shadow-lg shadow-slate-300 my-20 h-full">
+    <div class="container w-1/3 mx-auto items-center justify-center lg:justify-between bg-white p-6 pt-3 rounded-xl shadow-lg shadow-slate-300 my-20">
         <div class="columns">
             <div class="w-full">
                 <img class="w-52 mx-auto mt-2 mb-3" src="~/assets/images/bchlogo.png "/>
@@ -96,7 +96,7 @@ async function submitloginForm() {
             }
         }
     })
-      .catch(error => {
+    .catch(error => {
         if (error.response) {
           for (const property in error.response._data) {
             errors.value.push(`${property}: ${error.response._data[property]}`)
@@ -110,3 +110,9 @@ async function submitloginForm() {
   }
 }
 </script>
+
+<style>
+    body {
+      background-color: #ececec;
+    }
+</style>

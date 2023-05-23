@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="background">
       <loginForm />
   </div>
 </template>
@@ -15,8 +15,13 @@ export default {
 </script>
 
 <style>
-  body{
+  .background{
       overflow: hidden;
-      background-color: #ececec;
+      background-color: #ececec;     
+      background: url(~/assets/images/bg.png);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
     }
 </style>
