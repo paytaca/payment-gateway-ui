@@ -68,7 +68,7 @@ export default {
     // console.log(test, 'before')
     console.log(store, 'before try')
     try {
-      const response = await fetch('http://192.168.1.7:7878/payment-gateway/total-sales/', {
+      const response = await fetch('http://192.168.1.31:7878/payment-gateway/total-sales/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

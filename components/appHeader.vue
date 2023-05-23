@@ -40,7 +40,7 @@
         }
       },
       mounted() {
-        $fetch('http://192.168.1.7:7878/payment-gateway/user/info/', {
+        $fetch('http://192.168.1.31:7878/payment-gateway/user/info/', {
           method: 'GET',
           params: {
             token: localStorage.token,

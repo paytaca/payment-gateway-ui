@@ -11,7 +11,7 @@
       <dropdown />
       <div class="flex">
 
-        <div v-if="isWalletConnected, isWooCommerceConnected" class="inline-block border-0 rounded-lg mt-5 py-2 px-2 shadow-lg flex-col bg-white outline-none focus:outline-none mx-auto w-3/4 h-72">
+        <div v-if="isWalletConnected, isWooCommerceConnected" class="inline-block border-0 rounded-lg mt-5 py-2 px-2 shadow-lg flex-col bg-white outline-none focus:outline-none mx-auto w-full mb-2 mr-5 h-72">
           <appTodaySales />
         </div>
 
@@ -19,7 +19,7 @@
       <!--SECOND ROW CONTENT-->
       <div class="flex">
 
-        <div v-if="isWalletConnected, isWooCommerceConnected" class="inline-block border-0 rounded-lg mt-3 px-2 py-2 shadow-lg flex-col bg-white outline-none focus:outline-none mr-5 w-full mb-5 h-72">
+        <div v-if="isWalletConnected, isWooCommerceConnected" class="inline-block border-0 rounded-lg mt-3 px-2 py-2 shadow-lg flex-col bg-white outline-none focus:outline-none mr-5 w-full mb-2 h-72">
           <appBarchart />
         </div>
 
@@ -27,7 +27,7 @@
       <!--THIRD ROW CONTENT-->
       <div class="flex">
 
-       <div v-if="isWalletConnected, isWooCommerceConnected" class="inline-block border-0 rounded-lg mt-3 px-2 py-2 shadow-lg flex-col bg-white outline-none focus:outline-none mr-5 w-full mb-5 h-72">
+       <div v-if="isWalletConnected, isWooCommerceConnected" class="inline-block border-0 rounded-lg mt-3 px-2 py-2 shadow-lg flex-col bg-white outline-none focus:outline-none mr-5 w-full mb-2 h-72">
           <appLinechart />
         </div>
 
@@ -47,7 +47,7 @@ export default {
     };
   },
   mounted() {
-    $fetch('http://192.168.1.7:7878/payment-gateway/user/info/', {
+    $fetch('http://192.168.1.31:7878/payment-gateway/user/info/', {
       method: 'GET',
       params: {
         token: localStorage.token,
