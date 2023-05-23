@@ -5,7 +5,7 @@
     <appSidebar/>
        
     <div class="content">
-        <h2 class="mt-3 text-xl font-bold">Link your Wallet...</h2>
+        <h2 class="mt-3 text-xl font-bold">Link your Wallet</h2>
 
         <div class="w-1/5 h-1/5 rounded-3xl overflow-hidden shadow-lg bg-[#ffffff] object-center mt-5 inline-block">
             <div class="py-4 px-4 text-center"> 
@@ -32,7 +32,7 @@
         <div class="h-16"></div>
 
         <div class="mb-5" v-if="isWalletConnected">
-            <h2 class="mt-3 text-xl font-bold">Connected Wallet...</h2>
+            <h2 class="mt-3 text-xl font-bold">Connected Wallet</h2>
 
             <div class="w-1/5 h-1/6 rounded-3xl overflow-hidden shadow-lg bg-[#ffffff] object-center mt-5 inline-block">
                 <div class="py-4 px-4 text-center"> 

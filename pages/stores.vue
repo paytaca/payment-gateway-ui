@@ -7,7 +7,7 @@
     </div>
     
     <div class="content">
-        <h2 class="mt-3 text-xl font-bold">Connect a Store...</h2>
+        <h2 class="mt-3 text-xl font-bold">Connect a Store</h2>
 
         <div class="w-1/5 h-1/5 rounded-3xl overflow-hidden shadow-lg bg-[#ffffff] object-center mt-5 inline-block">
             <div class="py-4 px-4 text-center"> 
@@ -125,15 +125,12 @@
         <div class="h-16"></div>
         
         <div class="mb-5" v-if="isWooCommerceConnected">
-            <h2 class="mt-3 text-xl font-bold">Connected Stores...</h2>
+            <h2 class="mt-3 text-xl font-bold">Connected Stores</h2>
 
             <div class="w-1/5 h-1/6 rounded-3xl overflow-hidden shadow-lg bg-[#ffffff] object-center mt-5 inline-block">
                 <div class="py-4 px-4 text-center"> 
-                    <img class="w-24 mx-auto my-7" src="~/assets/images/uwucommerce.png "/>
+                    <img class="w-32 mx-auto my-7" src="~/assets/images/uwucommerce.png "/>
                     <div class="font-bold text-lg mb-2">WooCommerce</div>
-                    <p class="text-gray-700 text-sm mt-6">Sales: 100,000</p>
-                    <p class="text-gray-700 text-sm">Products Available: 5,000</p>
-                    <p class="text-gray-700 text-sm mb-3">Total Income: <span class="text-blue-500">150,000.00</span></p>
                 </div>
             </div>
         </div> 
