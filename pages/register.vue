@@ -4,9 +4,6 @@
             <div class="w-full ">
                 <img class="w-52 mx-auto mt-2 mb-3" src="~/assets/images/bchlogo.png "/>
                 <h2 class="text-center font-semibold text-2xl my-3">Sign Up</h2>
-                <!-- <div class="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300"></div> -->
-  
-                <!-- <Notification :message="error" v-if="error"/> -->
   
                 <form v-on:submit.prevent="submitForm">
                     <div class="field mt-3">
@@ -94,7 +91,6 @@
         .then(response => {
             alert('Account successfully registered!')
 
-            // Store the new account data in localStorage
             const user = {
               full_name: full_name.value,
               username: username.value,

@@ -39,7 +39,6 @@ async mounted () {
       const responseData = await response.json()
       console.log('Response Data Year:', responseData)
 
-      // Extract the year and total sale values from responseData
       const years = responseData.map(item => item.year)
       const totalSales = responseData.map(item => parseFloat(item.total_sale))
 

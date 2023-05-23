@@ -88,8 +88,6 @@
                 </div>
             </div>
         </div>
-          <!--SECOND ROW CONTENT-->
-          <!--THIRD ROW CONTENT-->
   </div>
       
       
@@ -149,7 +147,6 @@
           .then(response => {
             alert('Account successfully updated!')
   
-            // Store user's updated information in cookie
             document.cookie = `full_name=${full_name.value}`
             document.cookie = `username=${username.value}`
             document.cookie = `email=${email.value}`

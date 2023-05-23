@@ -16,7 +16,7 @@ export default {
       selectedOption: '',
       isWooCommerceConnected: false,
       showDropdown: true,
-      stores: [] // Assuming you have an array of connected stores
+      stores: []
     }
   },
   mounted() {
@@ -35,9 +35,8 @@ export default {
       }
       
       if (this.isWooCommerceConnected) {
-        // Perform a check to see if only one store is connected
         if (this.stores.length === 1) {
-          this.showDropdown = false; // Hide the dropdown
+          this.showDropdown = false; 
         }
       }
     })

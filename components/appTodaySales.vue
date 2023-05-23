@@ -50,22 +50,20 @@
 export default {
   data() {
     return {
-      sales: null // Initialize the data property with null
+      sales: null 
     };
   },
   methods: {
     formatPercentage(value) {
       const parsedValue = parseFloat(value);
       if (isNaN(parsedValue)) {
-        return 'N/A'; // Provide a fallback value for invalid or NaN values
+        return 'N/A'; 
       }
       return (parsedValue * 100).toFixed(1) + '%';
     },
   },
   async mounted() {
     const store = localStorage.store_url;
-    // const test = "https://Paytaca-Test-2.local";
-    // console.log(test, 'before')
     console.log(store, 'before try')
     try {
       const response = await fetch('http://192.168.1.31:7878/payment-gateway/total-sales/', {
@@ -78,12 +76,11 @@ export default {
         }),
       })
       if (response.ok) {
-        // console.log(store, 'within try')
         const responseData = await response.json()
         console.log('Response Data:', responseData)
         if (typeof responseData === 'object' && Object.keys(responseData).length > 0) {
           this.sales = responseData;
-          console.log('Sales Object:', this.sales); // Log the sales object
+          console.log('Sales Object:', this.sales); 
         } else {
           this.sales = null;
         }

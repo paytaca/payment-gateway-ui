@@ -40,7 +40,6 @@ export default {
       const responseData = await response.json()
       console.log('Response Data:', responseData)
 
-      // Initialize labels and salesData arrays with default values
       const labels = [
         'January',
         'February',
@@ -57,7 +56,6 @@ export default {
       ];
       const salesData = Array(12).fill(0);
 
-      // Update values based on responseData
       responseData.forEach(item => {
         const month = Number(item.month.substring(5));
         salesData[month - 1] = parseFloat(item.total_sale);

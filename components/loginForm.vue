@@ -5,8 +5,6 @@
                 <img class="w-52 mx-auto mt-2 mb-3" src="~/assets/images/bchlogo.png "/>
                 <h2 class="text-center font-semibold text-2xl my-6">Welcome back!</h2>
 
-                <!-- <Notification :message="error" v-if="error"/> -->
-
                 <form v-on:submit.prevent="submitloginForm">
                     <div class="mt-3">
                         <label class="font-semibold text-slate-500 ">Email</label>
@@ -91,13 +89,9 @@ async function submitloginForm() {
             const storedUser = localStorage.getItem('user')
 
             if (storedUser) {
-              // New user logging in for the first time
               localStorage.removeItem('user')
               router.push('/wallet')
             } else {
-              // Existing user logging in
-              // Perform login logic here
-              // Redirect to dashboard or any other page as needed
               router.push('/dashboard')
             }
         }
@@ -118,5 +112,12 @@ async function submitloginForm() {
 </script>
 
 <style>
-
+  body {
+    background-color: #ececec;
+    background: url(~/assets/images/bg.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+  }
 </style>
